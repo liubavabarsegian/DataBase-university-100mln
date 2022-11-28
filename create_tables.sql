@@ -4,10 +4,11 @@ CREATE TABLE "classes" (
 	id SERIAL PRIMARY KEY,
 	subject_name varchar(255) default NULL,
 	date DATE,
-	time varchar(255),
+	time TIME,
 	group_code varchar(255) default NULL,
 	class_type varchar(255) default NULL,
 	professor_id integer NULL,
+	FOREIGN KEY (professor_id) REFERENCES professors (id),
 	classroom integer NULL
 );
 
@@ -46,8 +47,8 @@ DROP TABLE IF EXISTS "students";
 
 CREATE TABLE "students" (
 	id SERIAL PRIMARY KEY,
+	group_attributes jsonb NULL,
 	name varchar(255) default NULL,
-	group_code varchar(255) default NULL,
 	status varchar(255) default NULL,
 	av_grade float NULL
 );
